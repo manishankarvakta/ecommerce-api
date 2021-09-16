@@ -15,6 +15,8 @@ const categoriesRouter = require('./routers/categories');
 const orderRouter = require('./routers/orders');
 const userRouter = require('./routers/users');
 
+const port = process.env.PORT || 3000;
+
 app.use(cors());
 app.options('*', cors());
 
@@ -27,13 +29,17 @@ app.use(authJwt());
 app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
 app.use(errorHandler);
 
+
 // routers
 app.use(`${api}/products`, productRouter);
 app.use(`${api}/categories`, categoriesRouter);
 app.use(`${api}/orders`, orderRouter);
 app.use(`${api}/users`, userRouter);
 
-
+// home page
+app.get('/', (req, res)=>{
+    res.send('Welcome to Aurora eCommerce API')
+})
 
 const DB_USER = 'ecommerce_user';
 const PASSWORD = encodeURIComponent('mU2Whi$rKYvz4#S'); 
@@ -48,8 +54,10 @@ mongoose.connect(`mongodb+srv://${DB_USER}:${PASSWORD}@cluster0.zth85.mongodb.ne
     console.log(err);
 })
 
-app.listen(3000, ()=>{
+
+
+app.listen(port, ()=>{
 
     console.log(api);
-    console.log('hello World from ecommerce at http://localhost:3000');
+    console.log('hello World from ecommerce at http://localhost:'+port);
 })

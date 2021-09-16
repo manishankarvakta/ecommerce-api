@@ -1,7 +1,7 @@
 {
   "name": "ecommerce",
   "version": "1.0.0",
-  "description": "Ecommerce Backend API ",
+  "description": "Ecommerce API SERVER",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
